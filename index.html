@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Botão Vermelho</title>
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#111111" />
+
+  <style>
+    html,body {height:100%;margin:0;background:#111;color:#fff;font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial}
+    .wrap {display:grid;place-items:center;height:100%;}
+    .btn {
+      width: 220px; height: 220px; border-radius: 50%;
+      background:#e10600; border:none; box-shadow:0 12px 24px rgba(0,0,0,.35), inset 0 -8px 0 rgba(0,0,0,.25);
+      touch-action:manipulation;
+    }
+    .btn:active {transform:scale(.98)}
+    .hint {position:fixed;bottom:16px;left:0;right:0;text-align:center;font-size:14px;color:#bbb}
+    /* acessibilidade */
+    .btn:focus {outline:3px solid #fff4}
+  </style>
+
+  <script>
+    // Carrega API do YouTube de forma assíncrona
+    (function loadYT(){
+      const tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+    })();
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <button id="red" class="btn" aria-label="Tocar som"></button>
+  </div>
+  <div class="hint">Adicione à tela inicial para experiência PWA.</div>
+
+  <!-- Player oculto -->
+  <div id="player-container" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+    <div id="player"></div>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
